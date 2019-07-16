@@ -1,0 +1,21 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metada:
+  name: k8s-multi-com-tls
+spec:
+  secretName: k8s-multi-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: i-antonenko.com
+  dnsNames:
+    - i-antonenko.com
+    - www.i-antonenko.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domain:
+          - i-antonenko.com
+          - www.i-antonenko.com
+
